@@ -47,5 +47,21 @@ angular.module("psb", [])
       });
     };
 
+    $scope.postItem = function(){
+      var data = {
+        name: $scope.itemname, 
+        price: $scope.price, 
+        description: $scope.description, 
+        ownerId: $scope.userId
+      }
+      $http({
+        method: "POST",
+        url: "/postItem",
+        data: data
+      }).then(function(result){
+        console.log(result);
+        $scope.items.push(result.data);
+      });
+    };
 
   });  

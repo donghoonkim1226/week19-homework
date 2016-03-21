@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 var db = "mongodb://localhost/psb-test";
 mongoose.connect(db);
 var User = require("./models/user.js");
-// var Item = require("./models/item.js");
+var Item = require("./models/items.js");
 // var Review = require("./models/review.js");
 
 app.get("/", function(req, res) {
@@ -57,6 +57,20 @@ app.post("/reloadBalance/:id", function(req, res){
     }
   });
 });
+
+app.post("/postItem", function(req, res) {
+  console.log(req.body);
+  var newItem = new Item(req.body);
+  newItem.save(function(err, newItem) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(newItem);
+    }
+  });
+});
+
 
 
 

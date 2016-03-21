@@ -78,13 +78,13 @@
 							</div>
 						</div>
 						<div class="row">
-						<div class="input-field col s12 m12 l12">
-							<div class="modal-footer">
-								<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Login
-									<i class="material-icons right">send</i>
-								</button>
-							</div>
-						</div>	
+							<div class="input-field col s12 m12 l12">
+								<div class="modal-footer">
+									<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Login
+										<i class="material-icons right">send</i>
+									</button>
+								</div>
+							</div>	
 						</div>
 					</form>
 				</div>
@@ -129,42 +129,81 @@
 				</div>
 			</div>
 			<!-- Post List -->
-			<div class="section">
-				<div class="row">
-					<div class="col s6 m6 l6">
-						<div class="card">
-							<div class="card-image waves-effect waves-block waves-light">
-							  <img class="activator responsive-img" src="/assets/images/junk.jpg">
-							</div>  
-							<div class="card-content">
-						    <span class="card-title activator grey-text text-darken-4">Buy It!<i class="material-icons right">more_vert</i></span>
-						  </div>
-						  <div class="card-reveal">
-						    <span class="card-title grey-text text-darken-4">Buy items.<i class="material-icons right">close</i></span>
-						    <p>View items for sale below</p>
-					    	<div class="row" ng-repeat"item in items">
-					    		<ul class="collapsible" data-collapsible="accordion">
-					    	    <li>
-					    	      <div class="item collapsible-header"><i class="material-icons">delete</i>{{item.name}}</div>
-					    	      <div class="collapsible-body">
-					    	      	<p class="item">{{item.name}} test</p>
-					    	      	<p class="item">Price: {{item.price | currency}}</p>
-					    	      	<p class="item">Description: {{item.description}}</p>
-					    	      	<a class="waves-effect waves-light btn" ng-click="buyItem(item._id)"><i class="material-icons right">credit card</i>Purchase</a>
-					    	     	</div>
-					          	</div>
-					    	    </li>
-					    	  </ul>
-					    	</div>   
-						  </div>
+			<div class="row">
+				<div class="col s6 m6 l6">
+					<div class="card">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator responsive-img main-img" src="/assets/images/crap.jpg">
+						</div>  
+						<div class="card-content">
+					    <span class="card-title activator grey-text text-darken-4">Buy It!<i class="material-icons right">more_vert</i></span>
+					  </div>
+					  <div class="card-reveal">
+					    <span class="card-title grey-text text-darken-4">Buy items.<i class="material-icons right">close</i></span>
+					    <p>View items for sale below</p>
+				    	<div class="row" ng-repeat"item in items">
+				    		<ul class="collapsible" data-collapsible="accordion">
+				    	    <li>
+				    	      <div class="item collapsible-header"><i class="material-icons">delete</i>{{item.name}}</div>
+				    	      <div class="collapsible-body">
+				    	      	<p class="item">{{item.name}}</p>
+				    	      	<p class="item">Price: {{item.price | currency}}</p>
+				    	      	<p class="item">Description: {{item.description}}</p>
+				    	<!--       	<a class="waves-effect waves-light btn" ng-click="buyItem(item._id)"><i class="material-icons right">credit card</i>Purchase</a> -->
+				    	      	<button class="waves-effect waves-light btn" ng-click="buyItem(item._id)">Purchase
+				    	      		<i class="material-icons right">send</i>
+				    	      	</button>
+				    	     	</div>
+				    	    </li>
+				    	  </ul>
+				    	</div>   
+					  </div>
+				  </div>
+				</div>
+				<div class="col s6 m6 l6">
+					<div class="card">
+						<div class="card-image waves-effect waves-block waves-light">
+						  <img class="activator responsive-img main-img" src="/assets/images/sell.jpg">
+						</div>
+						<div class="card-content">
+					    <span class="card-title activator grey-text text-darken-4">Sell it!<i class="material-icons right">more_vert</i></span>
+					  </div>
+					  <div class="card-reveal">
+					    <span class="card-title grey-text text-darken-4">Post your item for sale<i class="material-icons right">close</i></span>
+					    <form ng-submit="postItem()">
+					    	<div class="row">
+					    		<div class="input-field col s12 m12 l12">
+					    			<input id="itemname" type="text" ng-model="itemname">
+					    			<label for="itemname">Item Name</label>
+					    		</div>
+					    	</div>
+					    	<div class="row">	
+					    		<div class="input-field col s12 m12 l12">
+					    			<input id="price" type="text" ng-model="price">
+					    			<label for="price">Item Price</label>
+					    		</div>
+					    	</div>
+					    	<div class="row">	
+					    		<div class="input-field col s12 m12 l12">
+					    			<textarea id="description" class="materialize-textarea" ng-model="description"></textarea>
+					    			<label for="description">Item Description</label>
+					    		</div>
+					    	</div>
+					    	<div class="row">
+					    		<div class="input-field col s12 m12 l12">
+					    			<div class="modal-footer">
+					    				<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Post
+					    					<i class="material-icons right">send</i>
+					    				</button>
+					    			</div>
+					    		</div>	
+					    	</div>
+					    </form>
 					  </div>
 					</div>
-					<div class="col s6 m6 l6">
-						<h5 class="center align">Sell it!</h5>
-					</div>
 				</div>
-			</div>	
-		</div>
+			</div>
+		</div>	
 	
 
 
