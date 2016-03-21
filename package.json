@@ -15,5 +15,14 @@
     "express": "^4.13.4",
     "mongoose": "^4.4.8",
     "morgan": "^1.7.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donghoonkim1226/week19-homework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/donghoonkim1226/week19-homework/issues"
+  },
+  "homepage": "https://github.com/donghoonkim1226/week19-homework#readme"
 }

@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 var db = "mongodb://localhost/psb-test";
 mongoose.connect(db);
 var User = require("./models/user.js");
-var Item = require("./models/item.js");
+// var Item = require("./models/item.js");
 // var Review = require("./models/review.js");
 
 app.get("/", function(req, res) {
