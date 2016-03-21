@@ -32,7 +32,7 @@ angular.module("psb", [])
         $scope.userId = result.data._id;
         $scope.username = result.data.username;
         $scope.balance = result.data.balance;
-        // $scope.ownedItems = result.data.ownedItems;
+        $scope.ownedItems = result.data.ownedItems;
       });
     };
 
@@ -63,5 +63,19 @@ angular.module("psb", [])
         $scope.items.push(result.data);
       });
     };
+
+
+   $scope.buyItem = function(itemId){
+    var data = {itemId: itemId};
+    $http({
+      method: "POST",
+      url: "/buyItem/" + $scope.userId,
+      data: data
+    }).then (function (result){
+      console.log("result.data.balance:");
+      console.log(result.data.balance);
+      $scope.balance = result.data.balance;
+    });
+  };
 
   });  

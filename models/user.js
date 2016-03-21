@@ -7,10 +7,6 @@ var userSchema = new Schema({
   lastname: String,
   email: String,
   balance: Number,
-  // ownedItems: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Item"
-  // }],
   username: { type: String, unique: true },
   password: { type: String}
 });

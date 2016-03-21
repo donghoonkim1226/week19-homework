@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 var db = "mongodb://localhost/psb-test";
 mongoose.connect(db);
 var User = require("./models/user.js");
-var Item = require("./models/items.js");
+var Item = require("./models/item.js");
 // var Review = require("./models/review.js");
 
 app.get("/", function(req, res) {
@@ -71,6 +71,37 @@ app.post("/postItem", function(req, res) {
   });
 });
 
+app.get("/items", function(req, res) {
+  console.log(req.body);
+  Item.find(function(err, docs){
+    if (err){
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(docs);
+    }
+  });
+});
+
+app.post("/buyItem/:id", function(req, res){
+  console.log("req.body:")
+  console.log(req.body)
+  User.findOneAndUpdate({_id: req.params.id}, {$push: {ownedItems: req.body.itemId}}, {safe: true, upsert: true}, function(err, doc) {
+      if (err){
+        console.log(err);
+      }else {
+        Item.findOne({_id: req.body.itemId}).exec(function(err, item){
+          console.log("Item price:")
+          console.log(items.price)
+          console.log("doc.balance:")
+          console.log(doc.balance);
+          User.findOneAndUpdate({_id: req.params.id}, {balance: Number(doc.balance) - Number(item.price)}, function(err, doc) {
+          })
+        })
+      res.send(doc);
+    }
+  });
+});
 
 
 
