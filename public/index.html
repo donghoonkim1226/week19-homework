@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app="psb">
+<head>
+	<title>Week 19 Homework</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</head>
+<body>
+	<div ng-controller="psbController">
+		<!-- navigation bar -->
+		<nav>
+			<div class="nav-wrapper">
+				<a class="brand-logo">P.S.B.</a>
+				<ul id="nav-mobile" class="right">
+					<li><a class="waves-effect waves-light modal-trigger" href="#registrationModal" ng-hide="loggedIn">Register</a></li>
+					<li><a class="waves-effect waves-light modal-trigger" href="#loginModal" ng-hide="loggedIn">Login</a></li>
+					<li><a class="waves-effect waves-light modal-trigger" href="#balanceModal" ng-show="loggedIn">My Balance</a></li>
+
+				</ul>
+			</div>
+		</nav>
+		<!-- registration modal -->
+		<div id="registrationModal" class="modal">
+			<div class="modal-content">
+				<h4>Post it, Sell it, Buy it Registration</h4>
+				<div class="row">
+					<form ng-submit="register()">
+						<div class="row">
+							<div class="input-field col s12 m12 l12">
+								<input id="firstname" type="text" ng-model="firstname">
+								<label for="firstname">First Name</label>
+							</div>
+							<div class="input-field col s12 m12 l12">
+								<input id="lastname" type="text" ng-model="lastname">
+								<label for="lastname">Last Name</label>
+							</div>
+							<div class="input-field col s12 m12 l12">
+								<input id="email" type="email" ng-model="email">
+								<label for="email">Email</label>
+							</div>
+							<div class="input-field col s12 m12 l12">
+								<input id="username" type="text" ng-model="username">
+								<label for="username">Username</label>
+							</div>
+							<div class="input-field col s12 m12 l12">
+								<input id="password" type="password" ng-model="password">
+								<label for="password">Password</label>
+							</div>
+							<div class="modal-footer">
+								<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Register
+									<i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- login modal -->
+		<div id="loginModal" class="modal">
+			<div class="modal-content">
+				<h4>Login</h4>
+				<div class="row">
+					<form ng-submit="login()">
+						<div class="row">
+							<div class="input-field col s12 m12 l12">
+								<input id="username" type="text" ng-model="username">
+								<label for="username">Username</label>
+							</div>
+						</div>
+						<div class="row">	
+							<div class="input-field col s12 m12 l12">
+								<input id="password" type="password" ng-model="password">
+								<label for="password">Password</label>
+							</div>
+						</div>
+						<div class="row">
+						<div class="input-field col s12 m12 l12">
+							<div class="modal-footer">
+								<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Login
+									<i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>	
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- balance modal -->
+		<div id="balanceModal" class="modal">
+			<div class="modal-content">
+				<h4>My balance</h4>
+				<p>You currently have a balance of: {{ balance || "0" | currency }}</p>
+				<div class="row">
+					<form ng-submit="reloadBalance()">
+						<div class="row">
+							<div class="col s12 m12 l12">
+								<p>Reload your balance</p>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="input-field col s12 m12 l12">
+								<input id="balanceAmount" type="text" ng-model="balanceAmount">
+								<label for="balanceAmount">Amount</label>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="modal-action modal-close btn waves-effect waves-light" type="submit" href="#">Reload
+								<i class="material-icons right">send</i>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Home Page -->
+		<div class="container">
+			<div class="section">
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<h3 class="center align">P.S.B. - Post it - Sell it - Buy it</h3>
+						<h5 class="center align">A place to sell your junk and buy other peoples junks.</h5>
+						<h6 class="center align">"One man's trash is another man's treasure"</h6>
+					</div>
+				</div>
+			</div>
+			<!-- Post List -->
+			<div class="section">
+				<div class="row">
+					<div class="col s6 m6 l6">
+						<h5 class="center align">For Sale</h5>
+						<div class="row" ng-repeat="item in items">
+							<ul class="collapsible" data-collapsible="accordion">
+						    <li>
+						      <div class="item collapsible-header"><i class="material-icons">delete</i>{{item.name}}</div>
+						      <div class="collapsible-body">
+						      	<p class="item">{{item.name}}</p>
+						      	<p class="item">Price: {{item.price | currency}}</p>
+						      	<p class="item">Description: {{item.description}}</p>
+						      	<a class="waves-effect waves-light btn" ng-click="buyItem(item._id)"><i class="material-icons right">credit card</i>Purchase</a>
+						     	</div>
+					      	</div>
+						    </li>
+						  </ul>
+					  </div>
+					</div>
+					<div class="col s6 m6 l6">
+						
+					</div>
+				</div>
+			</div>	
+		</div>
+	
+
+
+
+		<!-- end of controller -->
+	</div>
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+	<!-- Materialize Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/assets/js/psb.js"></script>
+</body>
+</html>
